@@ -1,6 +1,8 @@
 require 'logger'
 require 'sinatra'
 require 'sinatra_auth_github'
+require 'sinatra/activerecord'
+require './models/code'
 
 module PpwmMatcher
   class App < Sinatra::Base

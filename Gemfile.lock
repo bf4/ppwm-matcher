@@ -1,7 +1,20 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    activemodel (3.2.13)
+      activesupport (= 3.2.13)
+      builder (~> 3.0.0)
+    activerecord (3.2.13)
+      activemodel (= 3.2.13)
+      activesupport (= 3.2.13)
+      arel (~> 3.0.2)
+      tzinfo (~> 0.3.29)
+    activesupport (3.2.13)
+      i18n (= 0.6.1)
+      multi_json (~> 1.0)
     addressable (2.3.4)
+    arel (3.0.2)
+    builder (3.0.4)
     daemons (1.1.9)
     eventmachine (1.0.0)
     faraday (0.8.7)
@@ -9,6 +22,7 @@ GEM
     faraday_middleware (0.9.0)
       faraday (>= 0.7.4, < 0.9)
     hashie (2.0.5)
+    i18n (0.6.1)
     multi_json (1.7.5)
     multipart-post (1.2.0)
     netrc (0.7.7)
@@ -19,13 +33,18 @@ GEM
       hashie (~> 2.0)
       multi_json (~> 1.3)
       netrc (~> 0.7.7)
+    pg (0.15.1)
     rack (1.5.2)
     rack-protection (1.5.0)
       rack
+    rake (10.0.4)
     sinatra (1.3.5)
       rack (~> 1.4)
       rack-protection (~> 1.3)
       tilt (~> 1.3, >= 1.3.3)
+    sinatra-activerecord (1.2.2)
+      activerecord (~> 3.0)
+      sinatra (~> 1.0)
     sinatra_auth_github (0.13.3)
       sinatra (~> 1.0)
       warden-github (~> 0.13.1)
@@ -34,6 +53,7 @@ GEM
       eventmachine (>= 0.12.6)
       rack (>= 1.0.0)
     tilt (1.4.1)
+    tzinfo (0.3.37)
     warden (1.2.1)
       rack (>= 1.0)
     warden-github (0.13.2)
@@ -44,5 +64,9 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  activerecord
+  pg
+  rake
+  sinatra-activerecord
   sinatra_auth_github
   thin
