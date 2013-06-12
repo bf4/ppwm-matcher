@@ -1,8 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'sinatra_auth_github'
+gemspec
+
 gem 'thin'
-gem "activerecord"
-gem "sinatra-activerecord"
-gem "pg"
 gem "rake"

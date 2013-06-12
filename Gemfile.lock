@@ -1,3 +1,12 @@
+PATH
+  remote: .
+  specs:
+    ppwm-matcher (0.0.0)
+      activerecord
+      pg
+      sinatra-activerecord
+      sinatra_auth_github
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -64,9 +73,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  activerecord
-  pg
+  ppwm-matcher!
   rake
-  sinatra-activerecord
-  sinatra_auth_github
   thin

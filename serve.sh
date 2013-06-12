@@ -12,7 +12,7 @@ else
       if [ $? -eq 1 ]
       then
         echo -e 'copying over example application.yml'
-        cp config/application.example.yml config/application.yml
+        cp lib/ppwm-matcher/config/application.example.yml lib/ppwm-matcher/config/application.yml
       fi
       ruby init.rb
       ;;

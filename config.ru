@@ -3,7 +3,7 @@ ENV['RACK_ENV'] ||= 'development'
 $stdout.sync = true
 require "rubygems"
 require "bundler/setup"
-require './app'
+require './lib/ppwm-matcher/app.rb'
 use Rack::Static,
   :urls => [],
   :root => "public"
