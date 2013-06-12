@@ -16,7 +16,15 @@ A sinatra app with github auth for Avdi
 
 ## Setup
 
-First, you need to [create a github application](https://github.com/settings/applications/new). Make a note of the client ID and secret. Your callback URL should be `http://<domain>/auth/github/callback`.
+You'll want to have two [github applications](https://github.com/settings/applications/new), one for development, and one for production.
+
+For each app, Make a note of the client ID and secret.
+
+For production, enter your application URL `http://<domain>/` and
+set the callback URL should be `http://<domain>/auth/github/callback`.
+
+For development, set your application URL to `http://localhost/` and set your
+callback URL to `http://localhost:9393/auth/github/callback`
 
 ### For development
 
@@ -26,24 +34,35 @@ Install the gems:
 bundle
 ```
 
-Then set the application settings as environment variables:
+Then set up your the application config and database settings
 
 ```bash
-export GITHUB_CLIENT_ID="<from GH>"
-export GITHUB_CLIENT_SECRET="<from GH>"
+./serve.sh setup`
 ```
+
+Update the GITHUB keys in your `config/application.yml`
+
 
 Finally start the web server using thin:
 
 ```bash
-bundle exec thin start  # start the server on 0.0.0.0:3000
+./serve.sh start
 ```
 
-### Deploying to heroku
+If you want to daemonize your dev server
+
+```bash
+./serve.sh start -d
+./serve.sh stop
+```
+
+### Deploying to heroku (production)
 
   ```bash
   heroku addons:add heroku-postgresql:dev
   heroku config:set GITHUB_CLIENT_ID="<from GH>" GITHUB_CLIENT_SECRET="<from GH>"
+  git push heroku master
+  heroku run rake db:migrate
   ```
 
 ## License

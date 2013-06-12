@@ -4,16 +4,13 @@ require 'sinatra_auth_github'
 require 'sinatra/activerecord'
 require './models/code'
 require './models/user'
+require './models/github_auth'
 
 module PpwmMatcher
   class App < Sinatra::Base
     enable :sessions
 
-    set :github_options, {
-      :scopes    => "user:email",
-      :secret    => ENV['GITHUB_CLIENT_SECRET'],
-      :client_id => ENV['GITHUB_CLIENT_ID'],
-    }
+    set :github_options, PpwmMatcher::GithubAuth.options
     LOGGER = Logger.new(STDOUT)
 
     register Sinatra::Auth::Github
