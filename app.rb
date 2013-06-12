@@ -29,7 +29,7 @@ module PpwmMatcher
     enable :sessions
 
     set :github_options, {
-      :scopes    => "user",
+      :scopes    => "user:email",
       :secret    => ENV['GITHUB_CLIENT_SECRET'],
       :client_id => ENV['GITHUB_CLIENT_ID'],
     }
@@ -47,9 +47,16 @@ module PpwmMatcher
       authenticate!
       <<-PAIR
 Hello there, #{github_user.login}!
-Enter your code:
+
 <form action='/code' method='POST'>
-  <input type='text' name='code' value=''>
+  <p>
+    Enter your code:
+    <input type='text' name='code' value=''>
+  </p>
+  <p>
+    Email:
+    <input type='text' name='email' value='#{github_user.email}'>
+  </p>
   <input type='submit'>
 </form>
 PAIR
@@ -58,9 +65,10 @@ PAIR
     post '/code' do
       authenticate!
       code = params['code']
+      email = params['email']
       #TODO don't over-write any already posted codes willy-nilly
       # check if this is the same user using the same code twice
-      user_info = "#{github_user.login}, #{github_user.email}"
+      user_info = "#{github_user.login}, #{email}"
       MATCHED_PAIRS[code] = user_info
       LOGGER.info "Matched #{user_info} to #{code}"
       pair = MATCHED_PAIRS.fetch(CODES.find_match(code), UNPAIRED)

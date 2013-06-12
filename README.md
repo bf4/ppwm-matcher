@@ -6,7 +6,6 @@ A sinatra app with github auth for Avdi
 
 ## TODO
 
-* below the 'code' input field, add an email field pre-populated from github, if available 
 * a way to add codes
 * persist codes, persist matched users
 * link to user emails
