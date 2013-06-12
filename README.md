@@ -17,11 +17,33 @@ A sinatra app with github auth for Avdi
 
 ## Setup
 
+First, you need to [create a github application](https://github.com/settings/applications/new). Make a note of the client ID and secret. Your callback URL should be `http://<domain>/auth/github/callback`.
+
+### For development
+
+Install the gems:
+
+```bash
+bundle
+```
+
+Then set the application settings as environment variables:
+
+```bash
+export GITHUB_CLIENT_ID="<from GH>"
+export GITHUB_CLIENT_SECRET="<from GH>"
+```
+
+Finally start the web server using thin:
+
+```bash
+bundle exec thin start  # start the server on 0.0.0.0:3000
+```
+
+### Deploying to heroku
+
   ```bash
-  bundle
   heroku addons:add heroku-postgresql:dev
-  # create a new github application https://github.com/account/applications
-  # your callback url should be hostname + /auth/github/callback
   heroku config:set GITHUB_CLIENT_ID="<from GH>" GITHUB_CLIENT_SECRET="<from GH>"
   ```
 
